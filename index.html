@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AV Alumi Vidros — Distribuidora de Alumínio e Vidros · Jacareí/SP</title>
+<meta name="description" content="Distribuidora de alumínio e vidros em Jacareí/SP. Atendimento para vidraceiros: perfis, vidros temperados, ferragens e acessórios. Pedido rápido pelo WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+============================================================ */
+:root {
+  --navy-950: #050F1E;
+  --navy-900: #071B38;
+  --navy-800: #0A2A52;
+  --navy-700: #0E3A6E;
+  --blue-600: #1550A0;
+  --blue-500: #1E6FB8;
+  --cyan-600: #2AA0A1;
+  --cyan-500: #3DBFC0;
+  --cyan-400: #5BD3D4;
+  --cyan-200: #A8ECEC;
+  --cyan-100: #D4F5F5;
+  --ink: #060F1C;
+  --slate-600: #2E4566;
+  --slate-500: #4A6380;
+  --slate-400: #6B85A0;
+  --slate-300: #A3B8CC;
+  --slate-100: #E8EEF5;
+  --paper: #F4F7FB;
+  --white: #FFFFFF;
+  --whats: #22C55E;
+  --whats-dark: #16A34A;
+
+  /* Glass tokens */
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-bg-md: rgba(255,255,255,0.10);
+  --glass-border: rgba(255,255,255,0.16);
+  --glass-border-strong: rgba(91,211,212,0.35);
+  --glass-inner: inset 0 1px 0 rgba(255,255,255,0.18);
+  --glass-shadow: 0 24px 64px -16px rgba(5,15,30,0.6), 0 4px 16px rgba(5,15,30,0.3);
+
+  /* Aluminum tokens */
+  --alum-light: #C8D8EB;
+  --alum-mid: #8AAAC4;
+  --alum-dark: #4A6A8A;
+  --alum-gradient: linear-gradient(180deg, #D8E8F4 0%, #8AAAC4 40%, #B8CCE0 70%, #7090B0 100%);
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+/* ============================================================
+   GLASS UTILITY CLASSES
+============================================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inner), var(--glass-shadow);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+.glass-panel-light {
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 8px 32px rgba(10,42,82,0.08);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes light-sweep {
+  0% { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(220%) skewX(-15deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(0.5deg); }
+  66% { transform: translateY(-6px) rotate(-0.3deg); }
+}
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(-0.4deg); }
+  66% { transform: translateY(-16px) rotate(0.3deg); }
+}
+@keyframes refraction-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(1); }
+  50% { opacity: 0.7; transform: scaleX(1.02); }
+}
+@keyframes alum-shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes grid-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+@keyframes scan-line {
+  0% { top: -2px; opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes border-glow {
+  0%, 100% { box-shadow: var(--glass-inner), 0 0 0 1px rgba(91,211,212,0.15); }
+  50% { box-shadow: var(--glass-inner), 0 0 0 1px rgba(91,211,212,0.45), 0 0 20px rgba(61,191,192,0.15); }
+}
+
+/* ============================================================
+   REVEAL (Intersection Observer)
+============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.10s; }
+.reveal-delay-2 { transition-delay: 0.20s; }
+.reveal-delay-3 { transition-delay: 0.30s; }
+.reveal-delay-4 { transition-delay: 0.40s; }
+
+/* ============================================================
+   NAV
+============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,27,56,0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 24px rgba(5,15,30,0.35);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between; height: 76px;
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; color: #fff; }
+.nav-logo img {
+  height: 40px; width: auto; border-radius: 8px;
+  border: 1px solid rgba(91,211,212,0.25);
+  box-shadow: 0 0 16px rgba(61,191,192,0.12);
+}
+.nav-logo-text { font-family: 'Manrope'; font-weight: 800; font-size: 15px; letter-spacing: 0.04em; }
+.nav-logo-text span { color: var(--cyan-400); }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); font-size: 14.5px; font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+  background: var(--cyan-400); transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--whats); color: #fff;
+  padding: 9px 18px; border-radius: 99px;
+  font-size: 13.5px; font-weight: 600;
+  box-shadow: 0 6px 20px -6px rgba(34,197,94,0.5);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.nav-cta:hover { background: var(--whats-dark); transform: translateY(-1px); }
+@media (max-width: 840px) {
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 13px; }
+  .nav-cta { display: none; }
+}
+@media (max-width: 600px) {
+  .nav-links { gap: 16px; }
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 120% 80% at 85% -20%, rgba(61,191,192,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 70% at -10% 110%, rgba(30,111,184,0.30) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(14,58,110,0.4) 0%, transparent 70%),
+    linear-gradient(160deg, #0A2A52 0%, #071B38 50%, #050F1E 100%);
+  color: #fff;
+  min-height: 100dvh;
+}
+
+/* Animated architectural grid background */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(91,211,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,211,212,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-flow 8s linear infinite;
+  opacity: 0.6;
+}
+
+/* Scan line effect */
+.hero::after {
+  content: '';
+  position: absolute; left: 0; right: 0; height: 2px; z-index: 0; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(91,211,212,0.4), transparent);
+  animation: scan-line 6s ease-in-out infinite;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 80px; align-items: center;
+  padding: 100px 0 120px;
+  position: relative; z-index: 1;
+}
+
+/* Hero left */
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: var(--cyan-400); font-size: 12.5px; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.hero-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan-400);
+  box-shadow: 0 0 8px var(--cyan-500), 0 0 16px rgba(61,191,192,0.4);
+  animation: refraction-pulse 2.5s ease-in-out infinite;
+}
+.hero-eyebrow-line { width: 32px; height: 1.5px; background: var(--cyan-500); }
+
+h1.hero-title {
+  font-size: clamp(40px, 5.2vw, 68px);
+  font-weight: 800;
+  line-height: 1.0;
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+}
+h1.hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #7DE8E9 0%, #3DBFC0 40%, #1E6FB8 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  color: rgba(200,220,240,0.85);
+  font-size: 17px; line-height: 1.7;
+  max-width: 540px; margin-bottom: 38px;
+  font-weight: 400;
+}
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600; font-family: 'Outfit', sans-serif;
+  border-radius: var(--radius-md); cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+.btn-whats {
+  background: var(--whats); color: #fff;
+  padding: 15px 24px; font-size: 15.5px;
+  box-shadow: 0 12px 32px -10px rgba(34,197,94,0.55), 0 4px 12px rgba(0,0,0,0.2);
+}
+.btn-whats:hover { background: var(--whats-dark); box-shadow: 0 16px 40px -10px rgba(34,197,94,0.65); }
+
+.btn-ghost {
+  background: rgba(255,255,255,0.06); color: #fff;
+  padding: 15px 24px; font-size: 15.5px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: var(--glass-inner);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.11); border-color: rgba(91,211,212,0.4); }
+
+/* Hero stats */
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3, auto); gap: 40px;
+  padding-top: 32px; max-width: 520px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.stat-val {
+  font-family: 'Manrope'; font-weight: 800;
+  font-size: 32px; letter-spacing: -0.04em; color: #fff;
+}
+.stat-val span { color: var(--cyan-400); }
+.stat-label { font-size: 12.5px; color: rgba(160,185,215,0.85); margin-top: 3px; line-height: 1.4; }
+
+/* ============================================================
+   HERO VISUAL — Glass composition
+============================================================ */
+.hero-visual {
+  position: relative; height: 540px;
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Main large glass slab */
+.glass-slab-wrap {
+  position: absolute; inset: 20px 0 20px 40px;
+  perspective: 1400px;
+}
+.glass-slab-inner {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(-12deg) rotateX(4deg);
+  position: relative;
+}
+
+/* Glass sheet layers */
+.g-sheet {
+  position: absolute; border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.g-sheet-1 {
+  inset: 0 60px 40px 0;
+  background: linear-gradient(135deg,
+    rgba(91,211,212,0.22) 0%,
+    rgba(61,191,192,0.08) 35%,
+    rgba(30,111,184,0.12) 70%,
+    rgba(91,211,212,0.18) 100%
+  );
+  border: 1px solid rgba(91,211,212,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    inset -1px 0 0 rgba(255,255,255,0.1),
+    0 32px 80px -20px rgba(5,15,30,0.7),
+    0 0 60px rgba(61,191,192,0.1);
+  backdrop-filter: blur(2px);
+}
+
+.g-sheet-2 {
+  inset: 50px 0 0 80px;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.04) 50%,
+    rgba(14,58,110,0.15) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 20px 60px -15px rgba(5,15,30,0.6);
+  backdrop-filter: blur(4px);
+  transform: translateZ(-30px);
+}
+
+.g-sheet-3 {
+  inset: 110px 100px 110px 40px;
+  background: linear-gradient(160deg,
+    rgba(255,255,255,0.20) 0%,
+    rgba(255,255,255,0.06) 60%,
+    rgba(61,191,192,0.1) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 12px 40px rgba(5,15,30,0.5);
+  backdrop-filter: blur(8px);
+  transform: translateZ(-60px);
+}
+
+/* Light sweep on each sheet */
+.g-sheet::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: skewX(-20deg) translateX(-120%);
+  animation: light-sweep 5s ease-in-out infinite;
+}
+.g-sheet-2::before { animation-delay: 1.5s; }
+.g-sheet-3::before { animation-delay: 3s; }
+
+/* Refraction rainbow edge */
+.g-sheet-1::after {
+  content: '';
+  position: absolute; top: 0; right: 0; width: 3px; height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(91,211,212,0.8) 20%,
+    rgba(30,111,184,0.6) 40%,
+    rgba(91,211,212,0.5) 60%,
+    rgba(200,230,240,0.7) 80%,
+    transparent 100%
+  );
+  animation: refraction-pulse 4s ease-in-out infinite;
+}
+
+/* Aluminum frame strips */
+.alum-h {
+  position: absolute; height: 5px; border-radius: 3px;
+  background: var(--alum-gradient);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 4px rgba(0,0,0,0.35);
+  animation: alum-shimmer 4s ease-in-out infinite;
+}
+.alum-v {
+  position: absolute; width: 5px; border-radius: 3px;
+  background: linear-gradient(90deg, #D8E8F4, #8AAAC4, #B8CCE0);
+  box-shadow: inset 1px 0 0 rgba(255,255,255,0.7), 0 1px 4px rgba(0,0,0,0.35);
+  animation: alum-shimmer 4s ease-in-out infinite;
+}
+.af-top    { top: -3px; left: 60px; right: 60px; }
+.af-bottom { bottom: -3px; left: 30px; right: 100px; animation-delay: 0.5s; }
+.af-left   { top: 20px; bottom: 40px; left: -2px; }
+.af-right  { top: 60px; bottom: 20px; right: 60px; animation-delay: 1s; }
+
+/* Hero logo card */
+.hero-card {
+  position: absolute; left: 50%; top: 50%; transform: translate(-46%, -52%);
+  background: rgba(7,27,56,0.88);
+  border: 1px solid rgba(91,211,212,0.35);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 32px 64px -16px rgba(5,15,30,0.7),
+    0 0 40px rgba(61,191,192,0.08);
+  display: flex; align-items: center; gap: 16px;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  min-width: 220px;
+}
+.hero-card img { height: 64px; border-radius: 8px; }
+.hero-card-badge {
+  font-size: 10.5px; letter-spacing: 0.2em;
+  color: var(--cyan-400); text-transform: uppercase; font-weight: 700;
+}
+.hero-card-name {
+  font-family: 'Manrope'; font-weight: 800; color: #fff;
+  font-size: 17px; margin-top: 3px; letter-spacing: -0.02em;
+}
+.hero-card-city { font-size: 12.5px; color: rgba(160,185,215,0.85); margin-top: 2px; }
+
+/* Floating data chips */
+.data-chip {
+  position: absolute;
+  background: rgba(7,27,56,0.82);
+  border: 1px solid rgba(91,211,212,0.3);
+  border-radius: 99px;
+  padding: 7px 14px;
+  font-size: 12px; font-weight: 600; color: var(--cyan-400);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  white-space: nowrap;
+  animation: float-delayed 7s ease-in-out infinite;
+}
+.chip-1 { top: 14%; right: -8%; animation-delay: 0s; }
+.chip-2 { bottom: 22%; left: -6%; animation-delay: 2s; }
+.chip-3 { top: 68%; right: -4%; font-size: 11px; animation-delay: 1s; }
+
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; padding: 64px 0 80px; }
+  .hero-visual { height: 400px; }
+  .hero-stats { grid-template-columns: repeat(3,1fr); gap: 24px; }
+}
+@media (max-width: 560px) {
+  .hero-visual { height: 320px; }
+  .glass-slab-wrap { inset: 10px 0; }
+}
+
+/* ============================================================
+   SECTION SHELL
+============================================================ */
+section { padding: 104px 0; }
+
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--blue-500);
+  margin-bottom: 18px;
+}
+.section-eyebrow::before {
+  content: ''; width: 24px; height: 2px; background: var(--cyan-500);
+}
+.section-title {
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 800; letter-spacing: -0.04em;
+  max-width: 700px;
+}
+.section-lead {
+  color: var(--slate-500); font-size: 17px; line-height: 1.65;
+  max-width: 520px;
+}
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 40px; margin-bottom: 56px; flex-wrap: wrap;
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.about { background: var(--paper); position: relative; overflow: hidden; }
+.about::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,191,192,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: center; }
+.about-copy p { color: var(--slate-600); font-size: 16.5px; line-height: 1.72; }
+.about-copy p + p { margin-top: 16px; }
+.about-copy strong { color: var(--navy-800); font-weight: 600; }
+
+.about-points {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px;
+  margin-top: 32px; list-style: none;
+}
+.about-points li {
+  display: flex; gap: 10px; align-items: flex-start;
+  color: var(--slate-600); font-size: 14.5px; font-weight: 500;
+}
+.about-points li::before {
+  content: '';
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
+  border-radius: 50%; background: var(--cyan-500);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M2 5l2 2 4-4' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat; background-position: center;
+}
+
+/* About visual: glass panels CSS composition */
+.about-visual {
+  position: relative; border-radius: var(--radius-xl); overflow: hidden;
+  aspect-ratio: 4/5;
+  background: linear-gradient(150deg, #071B38 0%, var(--navy-950) 100%);
+  box-shadow: 0 32px 80px -20px rgba(10,42,82,0.35), 0 0 0 1px rgba(91,211,212,0.15);
+}
+.about-visual::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(61,191,192,0.06) 0%, transparent 60%);
+}
+/* Inner glass frame effect */
+.about-visual::after {
+  content: ''; position: absolute; inset: 12px;
+  border: 1px solid rgba(255,255,255,0.16); border-radius: 14px;
+  pointer-events: none;
+}
+/* Light sweep on image */
+.about-visual-sweep {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.about-visual-sweep::after {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  transform: skewX(-15deg) translateX(-140%);
+  animation: light-sweep 6s ease-in-out infinite 2s;
+}
+
+.about-tag {
+  position: absolute; left: 24px; bottom: 24px; color: #fff;
+  background: rgba(7,27,56,0.75);
+  border: 1px solid rgba(91,211,212,0.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+  padding: 16px 20px; border-radius: 14px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+.about-tag-val { font-family: 'Manrope'; font-weight: 800; font-size: 24px; letter-spacing: -0.03em; }
+.about-tag-sub { font-size: 12.5px; color: rgba(180,210,235,0.9); margin-top: 2px; }
+
+.glass-panel { position: absolute; border-radius: 14px; pointer-events: none; }
+.glass-panel--back {
+  top: 15%; left: 8%; width: 75%; height: 62%;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(61,191,192,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  transform: perspective(700px) rotateY(-5deg) rotateX(2deg);
+}
+.glass-panel--mid {
+  top: 10%; left: 16%; width: 68%; height: 72%;
+  background: rgba(61,191,192,0.025);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+  transform: perspective(700px) rotateY(-2.5deg) rotateX(1deg);
+}
+.glass-panel--front {
+  top: 6%; left: 22%; width: 62%; height: 80%;
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid rgba(176,196,215,0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 32px rgba(0,0,0,0.18);
+  z-index: 1;
+}
+.glass-alum { position: absolute; border-radius: 2px; }
+.glass-alum--v {
+  left: 50%; top: 6%; bottom: 6%; width: 4px; transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(176,196,215,0.45) 0%, rgba(176,196,215,0.20) 100%);
+}
+.glass-alum--h {
+  top: 48%; left: 6%; right: 6%; height: 4px; transform: translateY(-50%);
+  background: linear-gradient(90deg, rgba(176,196,215,0.20) 0%, rgba(176,196,215,0.45) 50%, rgba(176,196,215,0.20) 100%);
+}
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-points { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PRODUCTS
+============================================================ */
+.products { background: #fff; }
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Glass product card */
+.pcard {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--slate-100);
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.pcard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px -16px rgba(10,42,82,0.22), 0 0 0 1px rgba(91,211,212,0.25);
+  border-color: transparent;
+}
+
+/* Spotlight border on hover */
+.pcard::before {
+  content: '';
+  position: absolute; inset: -1px; border-radius: calc(var(--radius-lg) + 1px);
+  background: linear-gradient(135deg, rgba(91,211,212,0), rgba(91,211,212,0.5), rgba(30,111,184,0.3), rgba(91,211,212,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; z-index: 0;
+}
+.pcard:hover::before { opacity: 1; }
+
+.pcard-top {
+  padding: 24px 22px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pcard-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(61,191,192,0.08);
+  border: 1px solid rgba(61,191,192,0.20);
+  display: grid; place-items: center;
+  color: var(--cyan-500);
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.pcard:hover .pcard-icon {
+  background: rgba(61,191,192,0.14);
+  border-color: rgba(61,191,192,0.40);
+}
+
+.pcard-lbl {
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cyan-500);
+  background: rgba(61,191,192,0.08);
+  border: 1px solid rgba(61,191,192,0.20);
+  padding: 5px 10px; border-radius: 6px;
+}
+
+.pcard-body {
+  padding: 16px 22px 24px;
+  display: flex; flex-direction: column; gap: 8px; flex: 1;
+  position: relative; z-index: 1;
+}
+.pcard-body h3 { font-size: 19px; color: var(--ink); }
+.pcard-body p { color: var(--slate-500); font-size: 14px; line-height: 1.55; flex: 1; }
+
+.pcard-foot {
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--slate-100);
+}
+
+.pcard-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(61,191,192,0.35);
+  color: var(--cyan-400);
+  font-size: 13px; font-weight: 600;
+  font-family: inherit;
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.pcard-wa:hover {
+  background: rgba(61,191,192,0.08);
+  border-color: rgba(61,191,192,0.60);
+  color: var(--cyan-500);
+}
+
+/* Glassmorphism product card variant (first 2 are glass style) */
+.pcard.pcard-glass {
+  background: #fff;
+}
+
+@media (max-width: 960px) { .prod-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 580px) { .prod-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   PARTNERS
+============================================================ */
+.partners {
+  background: var(--navy-950);
+  padding: 80px 0;
+  position: relative; overflow: hidden;
+}
+.partners::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(91,211,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,211,212,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.partners-head {
+  text-align: center; margin-bottom: 48px; position: relative;
+}
+.partners-head .section-eyebrow { color: var(--cyan-400); justify-content: center; }
+.partners-head h2 {
+  font-family: 'Manrope'; font-weight: 700;
+  font-size: clamp(24px, 2.8vw, 34px); color: #fff;
+  letter-spacing: -0.03em; margin-top: 6px;
+}
+
+.partners-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 16px; max-width: 480px; margin: 0 auto;
+  position: relative;
+}
+
+.partner-card {
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inner);
+  backdrop-filter: blur(10px);
+  padding: 28px 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; text-align: center; min-height: 160px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.partner-card:hover {
+  background: rgba(91,211,212,0.1);
+  border-color: rgba(91,211,212,0.5);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-inner), 0 16px 40px rgba(5,15,30,0.4), 0 0 20px rgba(61,191,192,0.1);
+}
+.partner-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: skewX(-15deg) translateX(-140%);
+  transition: none;
+}
+.partner-card:hover::before {
+  animation: light-sweep 0.7s ease-out forwards;
+}
+
+.partner-card img {
+  height: 72px; width: auto; max-width: 130px; object-fit: contain;
+  filter: brightness(1.05) saturate(0.9);
+  transition: filter 0.25s ease;
+}
+.partner-card:hover img { filter: brightness(1.1) saturate(1); }
+.partner-card .ptag {
+  font-size: 10.5px; letter-spacing: 0.2em; color: rgba(160,185,215,0.75);
+  text-transform: uppercase; font-weight: 600;
+}
+
+@media (max-width: 700px) { .partners-grid { grid-template-columns: repeat(2,1fr); } }
+
+/* ============================================================
+   WHY SECTION
+============================================================ */
+.why {
+  background: linear-gradient(160deg, #0A2A52 0%, #071B38 50%, #050F1E 100%);
+  color: #fff; position: relative; overflow: hidden;
+}
+.why::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 15% 10%, rgba(61,191,192,0.14), transparent 60%);
+  pointer-events: none;
+}
+.why::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(91,211,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,211,212,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; opacity: 0.5;
+}
+
+.why .section-eyebrow { color: var(--cyan-400); }
+.why .section-title { color: #fff; }
+.why .section-lead { color: rgba(160,185,215,0.85); }
+
+.why-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; position: relative; z-index: 1;
+}
+
+.why-card {
+  background: var(--glass-bg);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 32px 26px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glass-inner);
+  position: relative; overflow: hidden;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  animation: border-glow 5s ease-in-out infinite;
+}
+.why-card:nth-child(2) { animation-delay: 1.25s; }
+.why-card:nth-child(3) { animation-delay: 2.5s; }
+.why-card:nth-child(4) { animation-delay: 3.75s; }
+
+.why-card:hover {
+  background: rgba(91,211,212,0.08);
+  border-color: rgba(91,211,212,0.45);
+  transform: translateY(-4px);
+}
+
+/* Light sweep on why-card hover */
+.why-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  transform: skewX(-15deg) translateX(-140%);
+}
+.why-card:hover::before {
+  animation: light-sweep 0.9s ease-out forwards;
+}
+
+.why-ico {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(61,191,192,0.25), rgba(30,111,184,0.2));
+  border: 1px solid rgba(91,211,212,0.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 0 20px rgba(61,191,192,0.1);
+  display: grid; place-items: center; margin-bottom: 20px; color: var(--cyan-400);
+  backdrop-filter: blur(8px);
+}
+.why-card h3 { font-size: 18px; color: #fff; margin-bottom: 10px; }
+.why-card p { color: rgba(160,185,215,0.85); font-size: 14px; line-height: 1.6; }
+
+@media (max-width: 960px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   LOCATION
+============================================================ */
+.loc { background: var(--paper); }
+.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+
+.loc-info {
+  background: #fff;
+  border: 1px solid var(--slate-100);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex; flex-direction: column; gap: 24px;
+  box-shadow: 0 4px 24px rgba(10,42,82,0.06);
+}
+
+.loc-row { display: flex; gap: 16px; align-items: flex-start; }
+.loc-ico {
+  width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(61,191,192,0.12), rgba(30,111,184,0.08));
+  border: 1px solid rgba(91,211,212,0.25);
+  color: var(--navy-800); display: grid; place-items: center;
+}
+.loc-lbl {
+  font-family: 'Manrope'; font-weight: 700; font-size: 11px;
+  color: var(--slate-400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
+}
+.loc-val { font-size: 16px; color: var(--ink); font-weight: 500; line-height: 1.45; }
+.loc-val a { color: var(--blue-500); font-weight: 600; }
+.loc-val a:hover { color: var(--cyan-600); }
+
+.loc-hours table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 6px; }
+.loc-hours td { padding: 6px 0; color: var(--slate-600); }
+.loc-hours td:last-child { text-align: right; font-weight: 600; color: var(--ink); }
+.loc-hours tr + tr td { border-top: 1px solid var(--slate-100); }
+
+.loc-map {
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--slate-100); min-height: 480px;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(10,42,82,0.08);
+}
+.loc-map iframe { width: 100%; height: 100%; border: 0; display: block; min-height: 480px; }
+
+@media (max-width: 860px) { .loc-grid { grid-template-columns: 1fr; } .loc-map { min-height: 360px; } }
+
+/* ============================================================
+   CTA STRIP
+============================================================ */
+.cta-section {
+  background: linear-gradient(135deg, #1E6FB8 0%, #0A2A52 55%, #071B38 100%);
+  color: #fff; padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; right: -80px; top: -100px; width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61,191,192,0.35), transparent 65%);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(91,211,212,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,211,212,0.05) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+
+/* Glass CTA panel */
+.cta-panel {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-xl); padding: 48px 52px;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 24px 64px rgba(5,15,30,0.4);
+  overflow: hidden;
+}
+.cta-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: skewX(-15deg) translateX(-140%);
+  animation: light-sweep 7s ease-in-out infinite 1s;
+  pointer-events: none;
+}
+.cta-panel h2 {
+  font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.04em; max-width: 620px;
+}
+.cta-panel p { color: rgba(190,215,240,0.85); margin-top: 12px; max-width: 540px; font-size: 16.5px; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: var(--navy-950);
+  color: rgba(160,185,215,0.85);
+  padding: 64px 0 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.foot-top {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 40px; margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.foot-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.foot-brand img { height: 44px; border-radius: 8px; border: 1px solid rgba(91,211,212,0.2); }
+.foot-brand-name { font-family: 'Manrope'; font-weight: 800; color: #fff; font-size: 15px; letter-spacing: 0.03em; }
+.foot-brand-name span { color: var(--cyan-400); }
+.foot-about-text { font-size: 14px; line-height: 1.65; max-width: 320px; }
+.foot h4 {
+  color: rgba(255,255,255,0.9); font-family: 'Manrope'; font-size: 13px;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+}
+.foot ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.foot ul a { font-size: 14px; color: rgba(160,185,215,0.75); transition: color 0.2s ease; }
+.foot ul a:hover { color: #fff; }
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 0; font-size: 12.5px; flex-wrap: wrap; gap: 12px;
+}
+.foot-bottom-credits { color: rgba(130,160,190,0.6); }
+@media (max-width: 880px) { .foot-top { grid-template-columns: 1fr 1fr; gap: 28px; } }
+@media (max-width: 520px) { .foot-top { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   WHATSAPP FAB
+============================================================ */
+.wfab {
+  position: fixed; right: 24px; bottom: 24px; z-index: 90;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--whats); color: #fff;
+  padding: 14px 22px 14px 18px; border-radius: 999px;
+  box-shadow: 0 16px 40px -10px rgba(34,197,94,0.6), 0 6px 16px rgba(0,0,0,0.2);
+  font-weight: 600; font-size: 14.5px;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.wfab:hover { background: var(--whats-dark); transform: translateY(-3px); box-shadow: 0 20px 48px -10px rgba(34,197,94,0.7); }
+.wfab-pulse {
+  position: absolute; inset: 0; border-radius: 999px;
+  border: 2px solid var(--whats); pointer-events: none;
+  animation: pulse-ring 2.2s ease-out infinite;
+}
+@media (max-width: 520px) { .wfab .wfab-lbl { display: none; } .wfab { padding: 15px; border-radius: 50%; } }
+
+/* ============================================================
+   GLASS DIVIDER
+============================================================ */
+.glass-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(91,211,212,0.3), rgba(30,111,184,0.2), transparent);
+}
+
+/* ============================================================
+   HAMBURGER (CSS-only)
+============================================================ */
+.nav-toggle { display: none; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 110;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-hamburger span {
+  width: 24px; height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle:checked ~ .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   MOBILE — 640px (hamburger activation)
+============================================================ */
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+  .nav-inner { height: 60px; }
+
+  .nav-links {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: rgba(5,15,30,0.97);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    flex-direction: column;
+    padding: 12px 20px 20px;
+    gap: 0;
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.28s ease;
+    align-items: flex-start;
+    z-index: 99;
+  }
+  .nav-links a {
+    font-size: 16px !important;
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.9) !important;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-links a::after { display: none; }
+  .nav-toggle:checked ~ .nav-links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* CTA in nav hidden anyway on mobile */
+  .nav-cta { display: none !important; }
+}
+
+/* ============================================================
+   MOBILE — 480px (layout & spacing)
+============================================================ */
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  section { padding: 64px 0; }
+
+  /* Hero */
+  .hero-grid { padding: 48px 0 56px; gap: 32px; }
+  .hero-sub { font-size: 15px; margin-bottom: 28px; }
+  .hero-actions { gap: 10px; margin-bottom: 36px; }
+  .hero-actions .btn { font-size: 14px; padding: 13px 18px; }
+  .hero-stats { gap: 16px; padding-top: 24px; max-width: 100%; }
+  .stat-val { font-size: 26px; }
+  .stat-label { font-size: 11px; }
+  .data-chip { display: none; }
+
+  /* About */
+  .about-grid { gap: 28px; }
+
+  /* Products */
+  .pcard-top { padding: 18px 18px 0; }
+  .pcard-body { padding: 14px 18px 18px; }
+
+  /* Partners */
+  .partners { padding: 56px 0; }
+  .partner-card { padding: 20px 14px; min-height: 120px; }
+  .partner-card img { height: 56px; }
+
+  /* Why cards */
+  .why-card { padding: 24px 18px; }
+
+  /* Location */
+  .loc-info { padding: 22px 18px; }
+  .loc-map { min-height: 280px; }
+  .loc-map iframe { min-height: 280px; }
+
+  /* CTA strip */
+  .cta-section { padding: 64px 0; }
+  .cta-panel { padding: 28px 22px; gap: 24px; flex-direction: column; align-items: flex-start; }
+  .cta-panel::before { display: none; }
+  .cta-panel h2 { font-size: clamp(22px, 6vw, 28px); }
+  .cta-panel .btn { align-self: stretch; justify-content: center; font-size: 15px !important; padding: 16px 20px !important; }
+
+  /* Footer */
+  footer { padding: 44px 0 24px; }
+
+  /* Section head */
+  .section-head { margin-bottom: 36px; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#top">
+      <img src="assets/logo-av.jpg" alt="AV Alumi Vidros" />
+      <div class="nav-logo-text">AV ALUMI<span>VIDROS</span></div>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="nav-links" id="nav-links">
+      <a href="#produtos">Catálogo</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#localizacao">Localização</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <!-- Left: copy -->
+    <div>
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-dot"></span>
+        <span class="hero-eyebrow-line"></span>
+        Distribuidora · Jacareí/SP
+      </div>
+
+      <h1 class="hero-title reveal reveal-delay-1">
+        Alumínio e vidros<br/>para o vidraceiro<br/><em>profissional.</em>
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2">
+        Linha completa de perfis, vidros temperados, ferragens e acessórios — com estoque em Jacareí, atendimento direto e pedido rápido pelo WhatsApp.
+      </p>
+
+      <div class="hero-actions reveal reveal-delay-3">
+        <a class="btn btn-whats" href="https://wa.me/5512996069080?text=Olá!%20Sou%20vidraceiro%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.2L2 22l4.9-1.4a11 11 0 0 0 13.6-17.1Zm-8.6 16.8a9 9 0 0 1-4.6-1.3l-.3-.2-2.9.8.8-2.9-.2-.3a9 9 0 1 1 7.2 3.9Zm5-6.7c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1a7.4 7.4 0 0 1-3.6-3.1c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4c-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.1-1.3 0-.1-.2-.2-.5-.4Z"/></svg>
+          Solicitar orçamento
+        </a>
+        <a class="btn btn-ghost" href="#produtos">Ver catálogo</a>
+      </div>
+
+      <div class="hero-stats reveal reveal-delay-4">
+        <div>
+          <div class="stat-val">+500</div>
+          <div class="stat-label">itens em<br/>estoque</div>
+        </div>
+        <div>
+          <div class="stat-val">100<span>%</span></div>
+          <div class="stat-label">foco no<br/>vidraceiro</div>
+        </div>
+        <div>
+          <div class="stat-val">24<span>h</span></div>
+          <div class="stat-label">prazo médio<br/>de retirada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: glass visual -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="glass-slab-wrap">
+        <div class="glass-slab-inner">
+          <!-- Aluminum frame strips -->
+          <div class="alum-h af-top"></div>
+          <div class="alum-h af-bottom"></div>
+          <div class="alum-v af-left"></div>
+          <div class="alum-v af-right"></div>
+
+          <!-- Glass sheets back to front -->
+          <div class="g-sheet g-sheet-2"></div>
+          <div class="g-sheet g-sheet-3"></div>
+          <div class="g-sheet g-sheet-1"></div>
+
+          <!-- Logo card floating in center -->
+          <div class="hero-card">
+            <img src="assets/logo-av.jpg" alt="AV Alumi Vidros" />
+            <div>
+              <div class="hero-card-badge">Jacareí · SP</div>
+              <div class="hero-card-name">AV Alumi Vidros</div>
+              <div class="hero-card-city">Vidraçaria · Vale do Paraíba</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating chips -->
+      <div class="data-chip chip-1">Vidros temperado 6–10mm</div>
+      <div class="data-chip chip-2">+120 perfis em estoque</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="glass-divider"></div>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="sobre">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="section-eyebrow reveal">Sobre a empresa</div>
+        <h2 class="section-title reveal reveal-delay-1">Nova no mercado, com a experiência de quem entende de vidraçaria.</h2>
+        <p style="margin-top:28px" class="reveal reveal-delay-2">
+          A <strong>AV Alumi Vidros</strong> é uma distribuidora de <strong>alumínio, vidros e ferragens</strong> sediada no centro de Jacareí/SP. Somos uma empresa nova — prestes a completar nosso primeiro ano — fundada por profissionais com longa vivência no setor de esquadrias e vidraçaria.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Operamos com <strong>parcerias diretas com fabricantes consolidados</strong> como AL e Cebrace, garantindo procedência, qualidade certificada e preço competitivo. Nossa proposta: ser o fornecedor que o vidraceiro pode confiar, com estoque próximo e agilidade que a obra exige.
+        </p>
+        <ul class="about-points reveal reveal-delay-3">
+          <li>Atendimento direto ao vidraceiro</li>
+          <li>Estoque imediato em Jacareí</li>
+          <li>Corte e beneficiamento sob medida</li>
+          <li>Entregas para todo o Vale do Paraíba</li>
+          <li>Equipe técnica especializada</li>
+          <li>Condições especiais para profissionais</li>
+        </ul>
+      </div>
+
+      <div class="about-visual reveal reveal-delay-2">
+        <div class="glass-panel glass-panel--back"></div>
+        <div class="glass-panel glass-panel--mid"></div>
+        <div class="glass-panel glass-panel--front">
+          <div class="glass-alum glass-alum--v"></div>
+          <div class="glass-alum glass-alum--h"></div>
+        </div>
+        <div class="about-visual-sweep"></div>
+        <div class="about-tag">
+          <div class="about-tag-val">Jacareí · SP</div>
+          <div class="about-tag-sub">Sede e centro de distribuição</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRODUCTS ========== -->
+<section class="products" id="produtos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal">Catálogo</div>
+        <h2 class="section-title reveal reveal-delay-1">Tudo o que sai da bancada —<br/>em um só fornecedor.</h2>
+      </div>
+      <p class="section-lead reveal reveal-delay-2">Linhas completas de perfis de alumínio, vidros temperados sob medida, ferragens e acessórios. Pergunte pelo item, é provável que tenhamos em estoque.</p>
+    </div>
+
+    <div class="prod-grid">
+
+      <article class="pcard reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="3" rx="1"/><rect x="2" y="14" width="20" height="3" rx="1"/></svg>
+          </div>
+          <span class="pcard-lbl">Perfis</span>
+        </div>
+        <div class="pcard-body">
+          <h3>Alumínio em barras</h3>
+          <p>Linhas Suprema, Gold, Premium e Sapotec. Cores branco, preto, bronze, fosco e anodizado natural.</p>
+          <div class="pcard-foot">
+            <a class="pcard-wa" href="https://wa.me/5512996069080?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20Perfis%20de%20Alum%C3%ADnio." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.855L.057 23.214a.75.75 0 0 0 .918.932l5.42-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.704 9.704 0 0 1-4.95-1.354l-.355-.21-3.684.994.985-3.595-.23-.371A9.705 9.705 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              Consultar produto
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard reveal reveal-delay-1">
+        <div class="pcard-top">
+          <div class="pcard-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="pcard-lbl">Vidros</span>
+        </div>
+        <div class="pcard-body">
+          <h3>Vidros Temperados e Laminados</h3>
+          <p>Incolor, fumê, verde e bronze nas espessuras 6, 8, 10 e 12 mm. Cortes sob medida com furação e polimento.</p>
+          <div class="pcard-foot">
+            <a class="pcard-wa" href="https://wa.me/5512996069080?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20Vidros%20Temperados." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.855L.057 23.214a.75.75 0 0 0 .918.932l5.42-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.704 9.704 0 0 1-4.95-1.354l-.355-.21-3.684.994.985-3.595-.23-.371A9.705 9.705 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              Consultar produto
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard reveal reveal-delay-2">
+        <div class="pcard-top">
+          <div class="pcard-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <span class="pcard-lbl">Ferragens</span>
+        </div>
+        <div class="pcard-body">
+          <h3>Ferragens e acessórios</h3>
+          <p>Dobradiças, fechaduras, puxadores, roldanas, escovas, borrachas e silicones de fixação para box e fachada.</p>
+          <div class="pcard-foot">
+            <a class="pcard-wa" href="https://wa.me/5512996069080?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20Ferragens%20e%20Acess%C3%B3rios." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.855L.057 23.214a.75.75 0 0 0 .918.932l5.42-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.704 9.704 0 0 1-4.95-1.354l-.355-.21-3.684.994.985-3.595-.23-.371A9.705 9.705 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              Consultar produto
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pcard reveal">
+        <div class="pcard-top">
+          <div class="pcard-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"/><path d="M4 8v12h16V8"/><path d="M10 8v12"/></svg>
+          </div>
+          <span class="pcard-lbl">Box</span>
+        </div>
+        <div class="pcard-body">
+          <h3>Kits de box para banheiro</h3>
+          <p>Kits frontais e de canto, com perfis e ferragens completas. Modelos de correr e abrir, em todas as cores.</p>
+          <div class="pcard-foot">
+            <a class="pcard-wa" href="https://wa.me/5512996069080?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20Kits%20de%20Box%20para%20Banheiro." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.855L.057 23.214a.75.75 0 0 0 .918.932l5.42-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.704 9.704 0 0 1-4.95-1.354l-.355-.21-3.684.994.985-3.595-.23-.371A9.705 9.705 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              Consultar produto
+            </a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="pcard reveal reveal-delay-2">
+        <div class="pcard-top">
+          <div class="pcard-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7l10 10M17 7L7 17" opacity=".35"/></svg>
+          </div>
+          <span class="pcard-lbl">Espelhos</span>
+        </div>
+        <div class="pcard-body">
+          <h3>Espelhos e laminados</h3>
+          <p>Espelhos prata e bronze nas espessuras 3, 4 e 6 mm. Vidros laminados de segurança para guarda-corpos e sacadas.</p>
+          <div class="pcard-foot">
+            <a class="pcard-wa" href="https://wa.me/5512996069080?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20Espelhos%20e%20Vidros%20Laminados." target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.855L.057 23.214a.75.75 0 0 0 .918.932l5.42-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.704 9.704 0 0 1-4.95-1.354l-.355-.21-3.684.994.985-3.595-.23-.371A9.705 9.705 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+              Consultar produto
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARTNERS ========== -->
+<section class="partners" id="parceiros">
+  <div class="wrap">
+    <div class="partners-head">
+      <div class="section-eyebrow reveal">Parceiros e fornecedores</div>
+      <h2 class="reveal reveal-delay-1">Trabalhamos com as principais marcas do setor.</h2>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card reveal">
+        <img src="assets/parceiro-al.jpg" alt="AL Alumínio" />
+        <div class="ptag">Ferragens e Acessórios</div>
+      </div>
+      <div class="partner-card reveal reveal-delay-1">
+        <img src="assets/cebrace.jpg" alt="Cebrace" />
+        <div class="ptag">Vidros Temperados e Laminados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY ========== -->
+<section class="why" id="porque">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal">Por que comprar conosco</div>
+        <h2 class="section-title reveal reveal-delay-1">Quatro motivos para fechar a obra com a AV.</h2>
+      </div>
+      <p class="section-lead reveal reveal-delay-2">Mais que material: previsibilidade. O vidraceiro não pode parar a bancada esperando o fornecedor.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l9-4 9 4v6c0 5-4 8-9 9-5-1-9-4-9-9V7Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Estoque que segura a obra</h3>
+        <p>Mais de 120 perfis e todas as espessuras de vidro em estoque. Você sai com a peça no mesmo dia.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Corte rápido e preciso</h3>
+        <p>Vidro temperado, furos e lapidação em 24 a 48 horas, com tolerância profissional milimétrica.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="M8 11h8M8 14h5"/></svg>
+        </div>
+        <h3>Preço de vidraceiro</h3>
+        <p>Tabela exclusiva para profissionais, condições por volume e cadastro descomplicado para vidraceiros.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-ico">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v9Z"/></svg>
+        </div>
+        <h3>Atendimento direto</h3>
+        <p>Pedido pelo WhatsApp, sem call center: você fala com quem entende de obra e fecha em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCATION ========== -->
+<section class="loc" id="localizacao">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow reveal">Localização</div>
+        <h2 class="section-title reveal reveal-delay-1">Estamos em Jacareí — pertinho da sua próxima obra.</h2>
+      </div>
+      <p class="section-lead reveal reveal-delay-2">Centro de distribuição com pátio para carga e descarga, fácil acesso pela Dutra. Atendemos retirada e entrega no Vale do Paraíba.</p>
+    </div>
+
+    <div class="loc-grid">
+      <div class="loc-info reveal">
+        <div class="loc-row">
+          <div class="loc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13Z"/><circle cx="12" cy="9" r="3"/></svg></div>
+          <div>
+            <div class="loc-lbl">Endereço</div>
+            <div class="loc-val">Rua Santa Terezinha, 106 — Centro<br/>Jacareí · SP</div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></div>
+          <div>
+            <div class="loc-lbl">WhatsApp / Telefone</div>
+            <div class="loc-val"><a href="https://wa.me/5512996069080" target="_blank" rel="noopener">(12) 99606-9080</a></div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <div>
+            <div class="loc-lbl">E-mail</div>
+            <div class="loc-val"><a href="mailto:alumividros2025@gmail.com">alumividros2025@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></div>
+          <div>
+            <div class="loc-lbl">Instagram</div>
+            <div class="loc-val"><a href="https://instagram.com/_alumividros" target="_blank" rel="noopener">@_alumividros</a></div>
+          </div>
+        </div>
+        <div class="loc-row" style="border-top:1px solid var(--slate-100);padding-top:24px">
+          <div class="loc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div style="flex:1">
+            <div class="loc-lbl">Horário de funcionamento</div>
+            <div class="loc-hours">
+              <table>
+                <tr><td>Segunda a sexta</td><td>08h00 — 17h30</td></tr>
+                <tr><td>Sábado</td><td>08h00 — 12h00</td></tr>
+                <tr><td>Domingo e feriados</td><td>Fechado</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="loc-map reveal reveal-delay-1">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Rua+Santa+Terezinha,+106,+Centro,+Jacare%C3%AD+-+SP&z=16&output=embed"
+          title="Mapa de Jacareí - SP"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section">
+  <div class="wrap">
+    <div class="cta-panel reveal">
+      <div>
+        <h2>Pronto para fechar o próximo pedido?</h2>
+        <p>Mande a lista pelo WhatsApp. A gente confere estoque, fecha o orçamento e separa para retirada — em minutos.</p>
+      </div>
+      <a class="btn btn-whats" href="https://wa.me/5512996069080?text=Olá!%20Sou%20vidraceiro%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener" style="font-size:16px;padding:18px 28px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.2L2 22l4.9-1.4a11 11 0 0 0 13.6-17.1Zm-8.6 16.8a9 9 0 0 1-4.6-1.3l-.3-.2-2.9.8.8-2.9-.2-.3a9 9 0 1 1 7.2 3.9Zm5-6.7c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1a7.4 7.4 0 0 1-3.6-3.1c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4c-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.1-1.3 0-.1-.2-.2-.5-.4Z"/></svg>
+        Falar com o comercial
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/logo-av.jpg" alt="AV Alumi Vidros" />
+          <div class="foot-brand-name">AV ALUMI<span> VIDROS</span></div>
+        </div>
+        <p class="foot-about-text">Distribuidora de alumínio, vidros e ferragens em Jacareí/SP. Atendimento exclusivo para vidraceiros, serralheiros e instaladores do Vale do Paraíba.</p>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#porque">Diferenciais</a></li>
+          <li><a href="#localizacao">Localização</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Catálogo</h4>
+        <ul>
+          <li><a href="#produtos">Perfis de alumínio</a></li>
+          <li><a href="#produtos">Vidros temperados</a></li>
+          <li><a href="#produtos">Ferragens</a></li>
+          <li><a href="#produtos">Box e esquadrias</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5512996069080" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:alumividros2025@gmail.com">E-mail</a></li>
+          <li><a href="https://instagram.com/_alumividros" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#localizacao">Localização</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="foot-bottom-credits">© 2025 AV Alumi Vidros · Todos os direitos reservados · Jacareí/SP</span>
+      <span class="foot-bottom-credits">CNPJ disponível na loja</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== WHATSAPP FAB ========== -->
+<a class="wfab" href="https://wa.me/5512996069080?text=Olá!%20Sou%20vidraceiro%20e%20gostaria%20de%20um%20orçamento." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+  <span class="wfab-pulse" aria-hidden="true"></span>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.2L2 22l4.9-1.4a11 11 0 0 0 13.6-17.1Zm-8.6 16.8a9 9 0 0 1-4.6-1.3l-.3-.2-2.9.8.8-2.9-.2-.3a9 9 0 1 1 7.2 3.9Zm5-6.7c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1a7.4 7.4 0 0 1-3.6-3.1c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4c-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.1-1.3 0-.1-.2-.2-.5-.4Z"/></svg>
+  <span class="wfab-lbl">Falar no WhatsApp</span>
+</a>
+
+<script>
+/* Intersection Observer for scroll reveal */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+/* Close mobile nav on link click */
+(function() {
+  var toggle = document.getElementById('nav-toggle');
+  if (!toggle) return;
+  document.querySelectorAll('#nav-links a').forEach(function(link) {
+    link.addEventListener('click', function() { toggle.checked = false; });
+  });
+})();
+</script>
+</body>
+</html>
