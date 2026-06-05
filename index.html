@@ -1752,17 +1752,13 @@ footer {
 
     <!-- WIDGET BEHOLD.SO — substitua SEU_FEED_ID pelo ID gerado no behold.so -->
     <div class="insta-widget-wrap reveal">
-      <div class="insta-placeholder" id="insta-placeholder">
-        <div class="insta-placeholder-ico">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-        </div>
-        <h3>Feed do Instagram em breve</h3>
-        <p>Crie conta gratuita em <strong>behold.so</strong>, conecte o <strong>@_alumividros</strong> e me passe o <code>Feed ID</code> — os posts aparecem aqui automaticamente.</p>
-      </div>
-      <!-- Quando tiver o Feed ID, descomente a linha abaixo e apague o bloco insta-placeholder acima:
-      <div id="behold-widget-SEU_FEED_ID"></div>
-      <script src="https://w.behold.so/widget.js" type="module"></script>
-      -->
+      <behold-widget feed-id="0f0ciyUffP1V3pZeYVyB"></behold-widget>
+      <script>
+        (() => {
+          const d=document,s=d.createElement("script");s.type="module";
+          s.src="https://w.behold.so/widget.js";d.head.append(s);
+        })();
+      </script>
     </div>
 
     <div class="insta-footer reveal">
