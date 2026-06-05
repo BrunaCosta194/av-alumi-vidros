@@ -176,12 +176,16 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-logo { display: flex; align-items: center; gap: 14px; color: #fff; }
 .nav-logo img {
-  height: 40px; width: auto; border-radius: 8px;
-  border: 1px solid rgba(91,211,212,0.25);
-  box-shadow: 0 0 16px rgba(61,191,192,0.12);
+  height: 44px; width: auto; border-radius: 10px;
+  border: 1px solid rgba(91,211,212,0.45);
+  box-shadow: 0 0 20px rgba(61,191,192,0.22), 0 4px 12px rgba(5,15,30,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  filter: brightness(1.06) contrast(1.03) saturate(1.08);
+  position: relative;
 }
-.nav-logo-text { font-family: 'Manrope'; font-weight: 800; font-size: 15px; letter-spacing: 0.04em; }
-.nav-logo-text span { color: var(--cyan-400); }
+.nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
+.nav-logo-text .main { font-family: 'Manrope'; font-weight: 800; font-size: 15px; letter-spacing: 0.05em; line-height: 1; }
+.nav-logo-text .main span { color: var(--cyan-400); }
+.nav-logo-text .sub { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(91,211,212,0.6); line-height: 1; }
 .nav-links { display: flex; gap: 36px; align-items: center; }
 .nav-links a {
   color: rgba(255,255,255,0.7); font-size: 14.5px; font-weight: 500;
@@ -1185,6 +1189,86 @@ footer {
   .section-head { margin-bottom: 36px; gap: 20px; }
 }
 
+/* ============================================================
+   INSTAGRAM SECTION
+============================================================ */
+.insta-section { background: var(--paper); }
+
+.insta-head { text-align: center; margin-bottom: 52px; }
+
+.insta-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--blue-500); margin-bottom: 18px;
+}
+.insta-eyebrow::before, .insta-eyebrow::after {
+  content: ''; width: 24px; height: 2px; background: var(--cyan-500);
+}
+
+.insta-title {
+  font-size: clamp(28px, 3.6vw, 44px); font-weight: 800;
+  letter-spacing: -0.04em; color: var(--ink); margin-bottom: 14px;
+}
+.insta-lead {
+  font-size: 16.5px; color: var(--slate-400);
+  max-width: 500px; margin: 0 auto 24px; line-height: 1.65;
+}
+.insta-handle-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; padding: 10px 22px; border-radius: 99px;
+  font-size: 14px; font-weight: 600; font-family: 'Outfit', sans-serif;
+  box-shadow: 0 8px 24px -8px rgba(131,58,180,0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.insta-handle-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(131,58,180,0.55); }
+
+/* Behold.so widget wrapper */
+.insta-widget-wrap {
+  max-width: 1100px; margin: 0 auto 36px;
+  min-height: 320px;
+  border-radius: 20px; overflow: hidden;
+}
+
+/* Placeholder shown before Behold ID is configured */
+.insta-placeholder {
+  background: #fff;
+  border: 1.5px dashed var(--slate-100);
+  border-radius: 20px;
+  padding: 56px 32px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.insta-placeholder-ico {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  display: grid; place-items: center; color: #fff;
+}
+.insta-placeholder h3 { font-size: 17px; color: var(--ink); }
+.insta-placeholder p { font-size: 14px; color: var(--slate-400); max-width: 380px; line-height: 1.55; }
+.insta-placeholder code {
+  background: var(--slate-100); color: var(--navy-800);
+  padding: 3px 8px; border-radius: 6px; font-size: 13px;
+}
+
+.insta-footer {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.insta-more-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border: 1.5px solid var(--slate-100); color: var(--ink);
+  padding: 13px 28px; border-radius: 12px;
+  font-size: 14.5px; font-weight: 600; font-family: 'Outfit', sans-serif;
+  box-shadow: 0 2px 12px rgba(10,42,82,0.07);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.insta-more-btn:hover {
+  border-color: rgba(91,211,212,0.5);
+  box-shadow: 0 4px 20px rgba(61,191,192,0.12);
+  transform: translateY(-1px);
+}
+
 /* ===== SEÇÃO PILARES ===== */
 .pilares-section {
   padding: 100px 0;
@@ -1279,7 +1363,10 @@ footer {
   <div class="wrap nav-inner">
     <a class="nav-logo" href="#top">
       <img src="assets/logo-av.jpg" alt="AV Alumi Vidros" />
-      <div class="nav-logo-text">AV ALUMI<span>VIDROS</span></div>
+      <div class="nav-logo-text">
+        <div class="main">AV ALUMI<span>VIDROS</span></div>
+        <div class="sub">Jacareí · SP</div>
+      </div>
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
     <label for="nav-toggle" class="nav-hamburger" aria-label="Abrir menu">
@@ -1583,50 +1670,6 @@ footer {
   </div>
 </section>
 
-<!-- ========== WHY ========== -->
-<section class="why" id="porque">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="section-eyebrow reveal">Por que comprar conosco</div>
-        <h2 class="section-title reveal reveal-delay-1">Quatro motivos para fechar a obra com a AV.</h2>
-      </div>
-      <p class="section-lead reveal reveal-delay-2">Mais que material: previsibilidade. O vidraceiro não pode parar a bancada esperando o fornecedor.</p>
-    </div>
-
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l9-4 9 4v6c0 5-4 8-9 9-5-1-9-4-9-9V7Z"/><path d="m9 12 2 2 4-4"/></svg>
-        </div>
-        <h3>Estoque que segura a obra</h3>
-        <p>Mais de 120 perfis e todas as espessuras de vidro em estoque. Você sai com a peça no mesmo dia.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-1">
-        <div class="why-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        </div>
-        <h3>Corte rápido e preciso</h3>
-        <p>Vidro temperado, furos e lapidação em 24 a 48 horas, com tolerância profissional milimétrica.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <div class="why-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="M8 11h8M8 14h5"/></svg>
-        </div>
-        <h3>Preço de vidraceiro</h3>
-        <p>Tabela exclusiva para profissionais, condições por volume e cadastro descomplicado para vidraceiros.</p>
-      </div>
-      <div class="why-card reveal reveal-delay-3">
-        <div class="why-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v9Z"/></svg>
-        </div>
-        <h3>Atendimento direto</h3>
-        <p>Pedido pelo WhatsApp, sem call center: você fala com quem entende de obra e fecha em minutos.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ========== LOCATION ========== -->
 <section class="loc" id="localizacao">
   <div class="wrap">
@@ -1694,6 +1737,43 @@ footer {
   </div>
 </section>
 
+<!-- ========== INSTAGRAM ========== -->
+<section class="insta-section" id="instagram">
+  <div class="wrap">
+    <div class="insta-head">
+      <div class="insta-eyebrow reveal">Instagram</div>
+      <h2 class="insta-title reveal reveal-delay-1">Conheça nossos trabalhos</h2>
+      <p class="insta-lead reveal reveal-delay-2">Da matéria-prima ao acabamento — veja o que saiu daqui para obras reais no Vale do Paraíba.</p>
+      <a class="insta-handle-btn reveal reveal-delay-3" href="https://instagram.com/_alumividros" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        @_alumividros
+      </a>
+    </div>
+
+    <!-- WIDGET BEHOLD.SO — substitua SEU_FEED_ID pelo ID gerado no behold.so -->
+    <div class="insta-widget-wrap reveal">
+      <div class="insta-placeholder" id="insta-placeholder">
+        <div class="insta-placeholder-ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3>Feed do Instagram em breve</h3>
+        <p>Crie conta gratuita em <strong>behold.so</strong>, conecte o <strong>@_alumividros</strong> e me passe o <code>Feed ID</code> — os posts aparecem aqui automaticamente.</p>
+      </div>
+      <!-- Quando tiver o Feed ID, descomente a linha abaixo e apague o bloco insta-placeholder acima:
+      <div id="behold-widget-SEU_FEED_ID"></div>
+      <script src="https://w.behold.so/widget.js" type="module"></script>
+      -->
+    </div>
+
+    <div class="insta-footer reveal">
+      <a class="insta-more-btn" href="https://instagram.com/_alumividros" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        Ver mais no Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ========== CTA ========== -->
 <section class="cta-section">
   <div class="wrap">
@@ -1728,7 +1808,7 @@ footer {
           <li><a href="#sobre">Sobre nós</a></li>
           <li><a href="#pilares">Nossos Pilares</a></li>
           <li><a href="#produtos">Produtos</a></li>
-          <li><a href="#porque">Diferenciais</a></li>
+          <li><a href="#instagram">Instagram</a></li>
           <li><a href="#localizacao">Localização</a></li>
         </ul>
       </div>
